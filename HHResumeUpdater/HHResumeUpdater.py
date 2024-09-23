@@ -182,7 +182,7 @@ def hh_update_resume_date(bearer_token: str, resume_id: str) -> bool:
     resp = requests.post(url,headers=headers)
     respj = resp.json()
     
-    if error := respj.get('error') or respj.get('errors'): raise Exception(error)
+    if error := respj.get('error') or respj.get('errors'): raise Exception(f'{respj.get("description","")} - {error}')
     
     return resp.status_code == 204
 
